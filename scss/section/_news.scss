@@ -139,6 +139,7 @@
                         height: 100%;
                         @include column-between;
                         background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .55) 56%, rgba(0, 0, 0, .55) 100%);
+                        transition: all 0.3s;
 
                         .item_badge {
                             align-self: flex-end;
@@ -191,6 +192,7 @@
                                     padding: .1% 0;
                                     background-repeat: no-repeat;
                                     transition: all 0.3s;
+                                    font-family: $primary-font;
                                 }
 
                                 &:hover {
@@ -199,6 +201,12 @@
                                     }
                                 }
                             }
+                        }
+                    }
+
+                    &:hover {
+                        .item_content {
+                            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .75) 56%, rgba(0, 0, 0, .75) 100%);
                         }
                     }
                 }
@@ -250,7 +258,7 @@
 
 
                         &:hover {
-                            a{
+                            a {
                                 background-size: 100% 2px;
                             }
                         }
@@ -295,5 +303,274 @@
     100% {
         opacity: 1;
         transform: rotateX(0deg);
+    }
+}
+
+.all_news_section {
+    background-color: $bg-color-3;
+
+    .main_container {
+        width: 100%;
+        @include column-center;
+
+        .container_col {
+            width: 100%;
+            @include column-center;
+            gap: 30px;
+        }
+
+        @media (min-width: 992px) {
+            @include row-between;
+            align-items: stretch;
+
+            .container_col {
+                align-items: stretch;
+                justify-content: start;
+
+                &.col_1 {
+                    width: 70%;
+                }
+
+                &.col_2 {
+                    width: 25%;
+                }
+            }
+        }
+
+        .news_grid {
+            width: 100%;
+
+            .news_card {
+                width: 100%;
+
+                @media (min-width: 768px) {
+                    width: 48%;
+                }
+
+                .news_image {
+                    width: 100%;
+                    position: relative;
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: $black-4;
+                        opacity: 0;
+                        transition: all 0.3s;
+                    }
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                        object-fit: cover;
+                    }
+
+                    .news_badge {
+                        z-index: 10;
+                        position: absolute;
+                        bottom: 0;
+                        right: 0;
+                        background-color: #f7db60;
+                        color: #000;
+                        font-size: 12px;
+                        font-family: $secondary-font;
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
+                        padding: 25px;
+                        @include row-center;
+                        text-align: center;
+                        font-weight: 600;
+                        opacity: 0;
+                        transform: rotateX(90deg);
+                        animation: bannerBadgeAnimation 1s ease forwards;
+                    }
+                }
+
+                .card_content {
+                    padding: 30px 0;
+                    @include column-align-start;
+                    gap: 20px;
+
+                    .news_title {
+                        a {
+                            color: $text-color-1;
+                            display: inline;
+                            position: relative;
+                            background: linear-gradient(to right, #000 0%, #000 100%);
+                            background-size: 0 2px;
+                            background-position: 0 99%;
+                            padding: .1% 0;
+                            background-repeat: no-repeat;
+                            transition: all 0.3s;
+                            font-family: $primary-font;
+                        }
+
+                        &:hover {
+                            a {
+                                background-size: 100% 2px;
+                            }
+                        }
+                    }
+
+                    .news_date_author {
+                        font-size: 12px;
+                        font-family: $secondary-font;
+                        color: $text-color-1;
+                    }
+
+                    .news_text {
+                        width: 100%;
+                        color: $text-color-2;
+                        font-size: 19px;
+                        opacity: 0.8;
+                    }
+
+                    .detail_button {
+                        padding: 20px;
+                        background-color: $primary-color;
+                        color: #fff;
+                        @include row-center;
+                        text-align: center;
+                        font-size: 12px;
+                        text-transform: uppercase;
+                        font-family: $secondary-font;
+                        gap: 10px;
+                        font-weight: 600;
+
+                        &:active {
+                            background-color: $secondary-color;
+                        }
+                    }
+                }
+
+                &:hover {
+                    .news_image {
+                        &::after {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+
+        .news_categories {
+            width: 100%;
+            background-color: #fff;
+            border: 1px solid $black-1;
+            padding: 30px;
+            @include column-align-start;
+            gap: 20px;
+
+            .cat_heading {
+                font-size: 22px;
+                font-family: $primary-font;
+                font-weight: 600;
+                color: $text-color-1;
+            }
+
+            .cat_list {
+                width: 100%;
+                @include column-center;
+                gap: 3px;
+            }
+
+            .list_item {
+                width: 100%;
+                padding: 12px 0;
+                border-bottom: 1px solid $black-1;
+                @include row-between;
+                &:last-child{
+                    border: none;
+                }
+                .item_title {
+                    color: $text-color-1;
+                    font-family: $secondary-font;
+
+                    &:hover {
+                        color: $primary-color;
+                    }
+                }
+                .item_badge{
+                    width: 27px;
+                    height: 27px;
+                    border-radius: 50%;
+                    @include row-center;
+                    text-align: center;
+                    color: #fff;
+                    background-color: $primary-color;
+                    font-size: 10px;
+                    font-weight: 500;
+                    font-family: $secondary-font;
+                }
+            }
+        }
+        .popular_news_list{
+            width: 100%;
+            background-color: #fff;
+            border: 1px solid $black-1;
+            padding: 30px;
+            @include column-align-start;
+            gap: 20px;
+
+            .list_heading {
+                font-size: 22px;
+                font-family: $primary-font;
+                font-weight: 600;
+                color: $text-color-1;
+            }
+            .news_list{
+                width: 100%;
+                @include column-align-start;
+                gap: 20px;
+                .list_item{
+                    @include row-start;
+                    gap: 15px;
+                    .item_image{
+                        width: 90px;
+                        height: 90px;
+                        img{
+                            width: 90px;
+                            height: 90px;
+                            object-fit: cover;
+                        }
+                    }
+                    .item_content{
+                        @include column-align-start;
+                        gap: 10px;
+                        .content_title {
+                            span{
+                                font-size: 14px;
+                                color: $text-color-1;
+                                display: inline;
+                                position: relative;
+                                background: linear-gradient(to right, #000 0%, #000 100%);
+                                background-size: 0 2px;
+                                background-position: 0 99%;
+                                padding: .1% 0;
+                                background-repeat: no-repeat;
+                                transition: all 0.3s;
+                                font-family: $primary-font;
+                                font-weight: 600;
+                            }
+    
+                            &:hover {
+                                span {
+                                    background-size: 100% 2px;
+                                }
+                            }
+                        }
+                        .content_date{
+                            font-size: 12px;
+                            color: $text-color-1;
+                            opacity: 0.8;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
